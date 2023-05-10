@@ -2,13 +2,17 @@ package test.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import test.dao.entities.WordRelation;
+
+import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class WordRelationResponse {
 
-    private Iterable<WordRelation> wordRelations;
+    private List<WordRelationDTO> wordRelations;
+
 }

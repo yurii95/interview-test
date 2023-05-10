@@ -33,8 +33,9 @@ public class WordsRelationController {
 
     @GetMapping
     @ApiOperation(value = "Get all relations pairs")
-    public WordRelationResponse getAllWordRelations(@ApiParam Relation relation) {
-        return new WordRelationResponse(wordsRelationService.findWordRelations(relation));
+    public WordRelationResponse getAllWordRelations(@ApiParam Relation relation,
+                                                    @ApiParam boolean showInversions) {
+        return new WordRelationResponse(wordsRelationService.findWordRelations(relation, showInversions));
     }
 
 }
