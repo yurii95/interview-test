@@ -16,10 +16,10 @@ import javax.validation.constraints.Pattern;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WordRelationDTO {
 
-    @Pattern(regexp = "([A-Za-z ])",message = "Only chars [A-Z] and spaces are allowed")
+    @Pattern(regexp = "([A-Za-z ]+)",message = "Only chars [A-Z] and spaces are allowed")
     private String word1;
 
-    @Pattern(regexp = "([A-Za-z ])",message = "Only chars [A-Z] and spaces are allowed")
+    @Pattern(regexp = "([A-Za-z ]+)",message = "Only chars [A-Z] and spaces are allowed")
     private String word2;
 
     private Relation relation;

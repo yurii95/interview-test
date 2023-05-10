@@ -9,10 +9,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(
+        name = "words",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"word1", "word2"})
+)
 public class WordRelation {
 
     @Id
