@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import test.dao.enums.Relation;
 
+import javax.validation.constraints.Pattern;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,8 +15,13 @@ import test.dao.enums.Relation;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WordRelationDTO {
+
+    @Pattern(regexp = "([A-Za-z ])",message = "Only chars [A-Z] and spaces are allowed")
     private String word1;
+
+    @Pattern(regexp = "([A-Za-z ])",message = "Only chars [A-Z] and spaces are allowed")
     private String word2;
+
     private Relation relation;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

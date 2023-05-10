@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class WordsRelationController {
 
     @PostMapping()
     @ApiOperation(value = "Save relation between two words")
-    public void createWordRelation(@ApiParam WordRelationDTO wordRelation) {
+    public void createWordRelation(@Validated @ApiParam WordRelationDTO wordRelation) {
         wordsRelationService.createWordsRelation(wordRelation);
     }
 
