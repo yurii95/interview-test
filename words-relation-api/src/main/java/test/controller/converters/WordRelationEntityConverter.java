@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class WordRelationEntityConverter {
 
-    public List<WordRelationDTO> convertEntityList(List<WordRelation> entities) {
+    public List<WordRelationDTO> convertToDtoList(List<WordRelation> entities) {
         return entities.stream()
                 .map(entity -> WordRelationDTO.builder()
                         .word1(entity.getWord1())
@@ -18,4 +18,13 @@ public class WordRelationEntityConverter {
                         .relation(entity.getRelation()).build())
                 .collect(Collectors.toList());
     }
+
+    public WordRelation convertToEntity(WordRelationDTO wordRelationDTO) {
+        WordRelation wordRelation = new WordRelation();
+        wordRelation.setWord1(wordRelationDTO.getWord1());
+        wordRelation.setWord2(wordRelationDTO.getWord2());
+        wordRelation.setRelation(wordRelationDTO.getRelation());
+        return wordRelation;
+    }
+
 }

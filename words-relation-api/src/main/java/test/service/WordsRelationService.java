@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import test.controller.converters.WordRelationEntityConverter;
 import test.controller.dto.WordRelationDTO;
-import test.dao.entities.WordRelation;
 import test.dao.enums.Relation;
 import test.dao.repositories.WordsRepository;
 
@@ -24,8 +23,14 @@ public class WordsRelationService {
         this.wordRelationEntityConverter = wordRelationEntityConverter;
     }
 
-    public void createWordsRelation(WordRelation wordRelation) {
-        wordsRepository.save(wordRelation);
+    public void createWordsRelation(WordRelationDTO wordRelationDTO) {
+        wordRelationDTO.setWord1(prepareWord(wordRelationDTO.getWord1()));
+        wordRelationDTO.setWord2(prepareWord(wordRelationDTO.getWord2()));
+        wordsRepository.save(wordRelationEntityConverter.convertToEntity(wordRelationDTO));
+    }
+
+    private String prepareWord(String wordRelationDTO) {
+        return wordRelationDTO.toLowerCase().strip();
     }
 
     public List<WordRelationDTO> findWordRelations(Relation relation, boolean showInversions) {
@@ -45,9 +50,9 @@ public class WordsRelationService {
 
     private List<WordRelationDTO> getWordRelationsByFilter(Relation relation) {
         if (Objects.nonNull(relation)) {
-            return wordRelationEntityConverter.convertEntityList(wordsRepository.findByRelation(relation));
+            return wordRelationEntityConverter.convertToDtoList(wordsRepository.findByRelation(relation));
         } else {
-            return wordRelationEntityConverter.convertEntityList(wordsRepository.findAll());
+            return wordRelationEntityConverter.convertToDtoList(wordsRepository.findAll());
         }
     }
 

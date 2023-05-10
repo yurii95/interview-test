@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import test.controller.dto.WordRelationDTO;
 import test.controller.dto.WordRelationResponse;
-import test.dao.entities.WordRelation;
 import test.dao.enums.Relation;
 import test.service.WordsRelationService;
 
@@ -27,12 +27,12 @@ public class WordsRelationController {
 
     @PostMapping()
     @ApiOperation(value = "Save relation between two words")
-    public void createWordRelation(@ApiParam WordRelation wordRelation) {
+    public void createWordRelation(@ApiParam WordRelationDTO wordRelation) {
         wordsRelationService.createWordsRelation(wordRelation);
     }
 
     @GetMapping
-    @ApiOperation(value = "Get all relations pairs")
+    @ApiOperation(value = "Get relations")
     public WordRelationResponse getAllWordRelations(@ApiParam Relation relation,
                                                     @ApiParam boolean showInversions) {
         return new WordRelationResponse(wordsRelationService.findWordRelations(relation, showInversions));
