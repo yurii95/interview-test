@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import test.controller.dto.WordRelationResponse;
 import test.dao.entities.WordRelation;
+import test.dao.enums.Relation;
 import test.service.WordsRelationService;
 
 @RestController
@@ -32,8 +33,8 @@ public class WordsRelationController {
 
     @GetMapping
     @ApiOperation(value = "Get all relations pairs")
-    public WordRelationResponse getAllWordRelations() {
-        return new WordRelationResponse(wordsRelationService.findAllWordRelations());
+    public WordRelationResponse getAllWordRelations(@ApiParam Relation relation) {
+        return new WordRelationResponse(wordsRelationService.findWordRelations(relation));
     }
 
 }
